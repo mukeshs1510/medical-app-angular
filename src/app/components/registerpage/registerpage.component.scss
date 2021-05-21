@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bg {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 1rem;
+  left: 0px;
+  justify-content: center;
+  flex-direction: column;
+
+  h2 {
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 8px;
+  }
+
+  .btn {
+    background-color: rgb(9, 218, 9);
+  }
+}
+
+.input-fields,
+.btn,
+.btn-register {
+  border-radius: 8px;
+}
+
+.btn-register {
+  background-color: aliceblue;
+}
