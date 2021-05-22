@@ -23,27 +23,17 @@ export class RegisterpageComponent implements OnInit {
 
   async onSignUp(name:string, email: string, password: string, conPass: string) {
     if(password.match(conPass)) {
-      await this.firebaseService.signUp(email, password)
+      let Users = {}
+    Users['name'] = name;
+    Users['email'] = email;
+    Users['password'] = password;
+      await this.firebaseService.signUp(email, password, Users)
       if(this.firebaseService.isLoggedIn) {
-        this.saveUserDetails(name, email, password);
         } 
     } else {
       console.log("password does not match")
     }
   }
 
-  async saveUserDetails(name: string, email:string, password: string) {
-    let Users = {}
-    Users['name'] = name;
-    Users['email'] = email;
-    Users['password'] = password;
-      this.firebaseService.storeUsersDetails(Users).then(res => {
-        console.log("Successfully saved data to firestore")
-        this.isSignedIn = true
-        this.route.navigateByUrl('/home');
-      }).catch(error => {
-        console.log(error);
-      })
-  }
 
 }
