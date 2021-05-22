@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { FirebaseserviceService } from '../services/firebaseservice.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firebaseServices: FirebaseserviceService,
+    private route: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    this.firebaseServices.signOut();
+    this.route.navigateByUrl("/login")
   }
 
 }

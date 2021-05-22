@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "todo-angular-f6670": {
+      "hosting": {
+        "medical-app-angular": [
+          "todo-angular-f6670"
+        ]
+      }
+    }
+  }
+}

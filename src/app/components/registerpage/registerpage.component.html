@@ -16,10 +16,19 @@
       <form>
         <input
           class="input-fields w-100 p-2 mt-2"
+          placeholder="Full name"
+          type="name"
+          name="name"
+          id="name"
+          #name
+        />
+        <input
+          class="input-fields w-100 p-2 mt-2"
           placeholder="Email address"
           type="email"
           name="email"
           id="email-login"
+          #email
         />
         <input
           class="input-fields w-100 p-2 mt-2"
@@ -27,20 +36,26 @@
           type="password"
           name="password"
           id="password-login"
+          #password
         />
         <input
           class="input-fields w-100 p-2 mt-2"
           placeholder="Confirm Password"
           type="password"
           name="password"
-          id="password-login"
+          #conPass
         />
       </form>
       <div class="row mt-4">
         <button class="w-50 text-green p-2 btn-register" routerLink="/">
           Back to login
         </button>
-        <button class="w-50 text-white p-2 btn" routerLink="/home">
+        <button
+          class="w-50 text-white p-2 btn"
+          (click)="
+            onSignUp(name.value, email.value, password.value, conPass.value)
+          "
+        >
           Register
         </button>
       </div>

@@ -6,6 +6,7 @@ import { RegisterpageComponent } from './components/registerpage/registerpage.co
 
 const routes: Routes = [
   {path: "", component: LoginpageComponent},
+  {path: "login", component: LoginpageComponent},
   {path: "register", component: RegisterpageComponent},
   {path: "home", component: HomepageComponent},
 ];
