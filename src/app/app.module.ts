@@ -7,6 +7,13 @@ import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { RegisterpageComponent } from './components/registerpage/registerpage.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import {AngularFireModule} from '@angular/fire';
+import { HospitalsComponent } from './components/hospitals/hospitals.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { PharmacyComponent } from './components/pharmacy/pharmacy.component';
+import { MyaccountsComponent } from './components/myaccounts/myaccounts.component';
+import { BottomnavComponent } from './components/utilitie/bottomnav/bottomnav.component';
+import { NavbarrComponent } from './components/utilitie/navbarr/navbarr.component';
+import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospitalsdetails.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +21,13 @@ import {AngularFireModule} from '@angular/fire';
     LoginpageComponent,
     RegisterpageComponent,
     HomepageComponent,
+    HospitalsComponent,
+    AppointmentsComponent,
+    PharmacyComponent,
+    MyaccountsComponent,
+    BottomnavComponent,
+    NavbarrComponent,
+    HospitalsdetailsComponent,
   ],
   imports: [
     BrowserModule,

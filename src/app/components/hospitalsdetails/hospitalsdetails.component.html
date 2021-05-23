@@ -1,0 +1,61 @@
+<div class="container bg bg-success">
+  <div class="row">
+    <div class="col-12">
+      <app-navbarr></app-navbarr>
+      <div class="d-flex w-100 p-2 mt-1" routerLink="/hospdetails">
+        <img
+          src="../../../assets/hospital-ico.png"
+          width="100"
+          height="100"
+          alt=""
+        />
+        <div style="margin-left: 2.5rem" class="d-flex flex-column my-auto">
+          <h2 class="text-white">Hospital Name</h2>
+          <h3 class="text-white">Location</h3>
+          <div class="d-flex">
+            <span style="font-size: 20px" class="text-danger">* </span>
+            <p class="text-white">7:00am - 7:00pm</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column w-100 mt-3">
+        <textarea class="mx-2 p-2" placeholder="Service: " rows="3"></textarea>
+        <h3 class="text-white mt-3 p-2">Location</h3>
+        <div class="d-flex p-2 w-100">
+          <img
+            style="margin-left: 6px"
+            width="200"
+            src="../../../assets/map.jpg"
+            height="115"
+            alt=""
+          />
+          <div class="d-flex flex-column my-auto mx-3">
+            <h3 class="text-white">Address</h3>
+            <h6 class="text-white mt-1">H700, R700</h6>
+          </div>
+        </div>
+      </div>
+      <button
+        style="background-color: beige"
+        class="btn rounded-pill py-2 mt-5 w-100"
+      >
+        Make Appointment
+      </button>
+      <div class="d-flex w-100 mt-3">
+        <button
+          style="background-color: beige; width: 45%"
+          class="btn rounded-pill py-2"
+        >
+          Mail us
+        </button>
+        <button
+          style="background-color: beige; width: 45%; margin-left: 10%"
+          class="btn rounded-pill py-2"
+        >
+          Contact us
+        </button>
+      </div>
+      <app-bottomnav></app-bottomnav>
+    </div>
+  </div>
+</div>

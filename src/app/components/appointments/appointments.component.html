@@ -1,0 +1,86 @@
+<div class="container bg bg-success">
+  <div class="row">
+    <div class="col-12">
+      <app-navbarr></app-navbarr>
+      <div class="d-flex flex-column mt-3">
+        <h4 class="my-2 text-white">Take Appointment</h4>
+        <form>
+          <div class="w-100 d-flex mt-2 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-h-square my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2 shadow"
+              type="text"
+              name="name"
+              placeholder="Hospital name"
+              #block
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-calendar my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="date"
+              name="name"
+              placeholder="Date"
+              #block
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-clock-o my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="time"
+              name="name"
+              placeholder="Time"
+              #block
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-address-book-o my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="text"
+              name="name"
+              placeholder="Room Number"
+              #block
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-user my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="text"
+              name="name"
+              placeholder="Patient name"
+              #block
+            />
+          </div>
+        </form>
+      </div>
+      <button class="btn btn-danger w-100 py-2 rounded-pill shadow mt-5">
+        Cancel
+      </button>
+      <app-bottomnav></app-bottomnav>
+    </div>
+  </div>
+</div>
