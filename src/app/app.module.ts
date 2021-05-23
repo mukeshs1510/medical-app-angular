@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { RegisterpageComponent } from './components/registerpage/registerpage.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
-import {AngularFireModule} from '@angular/fire'
+import {AngularFireModule} from '@angular/fire';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginpageComponent,
     RegisterpageComponent,
-    HomepageComponent
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
