@@ -9,6 +9,7 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
 import { MyaccountsComponent } from './components/myaccounts/myaccounts.component';
 import { PharmacyComponent } from './components/pharmacy/pharmacy.component';
 import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospitalsdetails.component';
+import { AddhospitalComponent } from './components/addhospital/addhospital.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: "account", component: MyaccountsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "pharmacy", component: PharmacyComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "hospdetails", component: HospitalsdetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
+  {path: "addhospital", component: AddhospitalComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
 ];
 
 @NgModule({

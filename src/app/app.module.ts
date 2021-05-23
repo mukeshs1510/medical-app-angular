@@ -14,6 +14,7 @@ import { MyaccountsComponent } from './components/myaccounts/myaccounts.componen
 import { BottomnavComponent } from './components/utilitie/bottomnav/bottomnav.component';
 import { NavbarrComponent } from './components/utilitie/navbarr/navbarr.component';
 import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospitalsdetails.component';
+import { AddhospitalComponent } from './components/addhospital/addhospital.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospita
     BottomnavComponent,
     NavbarrComponent,
     HospitalsdetailsComponent,
+    AddhospitalComponent,
   ],
   imports: [
     BrowserModule,
