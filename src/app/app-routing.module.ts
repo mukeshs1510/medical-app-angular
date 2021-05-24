@@ -17,7 +17,7 @@ const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
 const routes: Routes = [
   {path: "", component: LoginpageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},
   {path: "login", component: LoginpageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},
-  {path: "register", component: RegisterpageComponent},
+  {path: "register", component: RegisterpageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }},
   {path: "home", component: HomepageComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "hospital", component: HospitalsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "appointment", component: AppointmentsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},

@@ -15,13 +15,16 @@ export class HospitalsComponent implements OnInit {
   constructor(private firebaseService: FirebaseserviceService, private routing: Router) { }
 
   ngOnInit(): void {
+    
     this.firebaseService.getHospitals().subscribe(hosp => {
       this.hospitals = hosp
+      console.log(this.hospitals)
     })
   }
 
   hospDetails(id: string) {
     this.routing.navigateByUrl('/hospdetails/'+id)
+
   }
 
 }

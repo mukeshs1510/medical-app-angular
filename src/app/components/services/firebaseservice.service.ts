@@ -4,6 +4,8 @@ import {AngularFireAuth} from '@angular/fire/auth'
 import { Users } from '../models/usermodel';
 import { AddHospital } from '../models/addhospital';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +17,33 @@ export class FirebaseserviceService {
   uid: any = null
 
   // hospitals: Observable<AddHospital[]>;
-  hospitals: Observable<AddHospital[]>
+  hospitals: any = []
 
-  constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore) { 
-    this.hospitals = this.firebaseFirestore.collection('hospitals').valueChanges();
+  constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore,private toastr: ToastrService,
+    private router: Router) { 
+    this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
   }
 
   async signIn(email: string, password: string) {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then(res => {
+      if(res.user.emailVerified !== true) {
+        this.toastMessageFaild("Please verify your mail first!","Email Verification")
+      } else {
       this.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify(res.user));
+      this.router.navigateByUrl('/home')
+    }
     })
   }
 
   async signUp(email: string, password: string, users: any) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
     .then(res => {
+      res.user.sendEmailVerification();
+      console.log("Email verification sent")
+      this.router.navigateByUrl('/login')
+      this.toastMessage("Email verification mail sent!", "Email verification")
       this.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify(res.user));
       this.storeUsersDetails(res.user.uid, users)
@@ -47,12 +59,26 @@ export class FirebaseserviceService {
     return this.firebaseFirestore.collection("users").doc(id).set(users)
   }
 
+  async getUserDetails() {
+     let id = await this.firebaseAuth.currentUser.then(res => res.uid)
+     console.log(id)
+     return this.firebaseFirestore.collection("users").doc(id).get();
+  }
+
   addHospitalDetails(hospitals: AddHospital) {
     return this.firebaseFirestore.collection("hospitals").add(hospitals);
   }
 
   getHospitals() {
     return this.hospitals;
+  }
+
+  toastMessage(textMessage: string, textTitle: string) {
+    this.toastr.success(textMessage, textTitle);
+  }
+
+  toastMessageFaild(textMessage: string, textTitle: string) {
+    this.toastr.info(textMessage, textTitle);
   }
 
 }

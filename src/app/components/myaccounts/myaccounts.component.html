@@ -69,7 +69,7 @@
               type="text"
               name="name"
               placeholder="Your Block"
-              #block
+              #password
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -118,6 +118,12 @@
       </div>
       <button class="btn btn-secondary w-100 py-2 rounded shadow mt-5">
         Save Changes
+      </button>
+      <button
+        class="btn btn-danger w-50 py-2 rounded shadow mt-2"
+        (click)="onLogout()"
+      >
+        Logout
       </button>
       <app-bottomnav></app-bottomnav>
     </div>
