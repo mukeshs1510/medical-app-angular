@@ -13,10 +13,10 @@
             ></i>
             <input
               class="input-fields w-100 p-2 shadow"
+              [(ngModel)]="hospitals.hospital_name"
               type="text"
               name="name"
               placeholder="Hospital name"
-              #block
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -27,10 +27,10 @@
             ></i>
             <input
               class="input-fields w-100 p-2"
+              [(ngModel)]="hospitals.date"
               type="date"
               name="name"
               placeholder="Date"
-              #block
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -41,10 +41,10 @@
             ></i>
             <input
               class="input-fields w-100 p-2"
+              [(ngModel)]="hospitals.time"
               type="time"
               name="name"
               placeholder="Time"
-              #block
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -56,20 +56,24 @@
             <input
               class="input-fields w-100 p-2"
               type="text"
+              [(ngModel)]="hospitals.patient_cpr"
               name="name"
               placeholder="Patient CPR"
-              #block
             />
           </div>
         </form>
       </div>
       <div class="d-flex w-100 mt-5">
-        <button class="btn btn-danger py-2 px-3 rounded-pill shadow">
+        <button
+          class="btn btn-danger py-2 px-3 rounded-pill shadow"
+          routerLink="/home"
+        >
           Cancel
         </button>
         <button
           style="background-color: beige"
           class="btn py-2 mx-2 rounded-pill shadow w-100"
+          (click)="addHospital()"
         >
           Add Hospital
         </button>

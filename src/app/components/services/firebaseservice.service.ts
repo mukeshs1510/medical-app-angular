@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth'
 import { Users } from '../models/usermodel';
+import { AddHospital } from '../models/addhospital';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,12 @@ export class FirebaseserviceService {
   users: Users
   uid: any = null
 
-  constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore) { }
+  // hospitals: Observable<AddHospital[]>;
+  hospitals: Observable<AddHospital[]>
+
+  constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore) { 
+    this.hospitals = this.firebaseFirestore.collection('hospitals').valueChanges();
+  }
 
   async signIn(email: string, password: string) {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -36,11 +43,16 @@ export class FirebaseserviceService {
     localStorage.removeItem('user');
   }
 
-
   storeUsersDetails(id: string, users: any) {
-    
     return this.firebaseFirestore.collection("users").doc(id).set(users)
   }
 
+  addHospitalDetails(hospitals: AddHospital) {
+    return this.firebaseFirestore.collection("hospitals").add(hospitals);
+  }
+
+  getHospitals() {
+    return this.hospitals;
+  }
 
 }

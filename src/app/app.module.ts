@@ -15,6 +15,10 @@ import { BottomnavComponent } from './components/utilitie/bottomnav/bottomnav.co
 import { NavbarrComponent } from './components/utilitie/navbarr/navbarr.component';
 import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospitalsdetails.component';
 import { AddhospitalComponent } from './components/addhospital/addhospital.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,9 @@ import { AddhospitalComponent } from './components/addhospital/addhospital.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), 
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyBS-XkBc_GDz7CxnXJ82UcNSO1LNR3PSW8",
     authDomain: "todo-angular-f6670.firebaseapp.com",

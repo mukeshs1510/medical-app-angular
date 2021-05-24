@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { AddHospital } from '../models/addhospital';
+import { FirebaseserviceService } from '../services/firebaseservice.service';
 
 @Component({
   selector: 'app-addhospital',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddhospitalComponent implements OnInit {
 
-  constructor() { }
+  hospitals: AddHospital = {
+    hospital_name: '',
+    date: '',
+    time: '',
+    patient_cpr: '',
+  }
+
+  constructor(private firebaseService: FirebaseserviceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  addHospital() {
+    if(this.hospitals.hospital_name != '' && this.hospitals.date != '' && this.hospitals.time != '' && this.hospitals.patient_cpr != '') {
+      this.firebaseService.addHospitalDetails(this.hospitals);
+      this.hospitals.hospital_name = '';
+      this.hospitals.date = '';
+      this.hospitals.time = '';
+      this.hospitals.patient_cpr = '';
+      this.toastr.success("Hospital Added Successfully!", "Hospital Data")
+    }
   }
 
 }

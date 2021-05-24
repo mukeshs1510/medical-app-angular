@@ -2,29 +2,41 @@
   <div class="row">
     <div class="col-12">
       <app-navbarr></app-navbarr>
-      <h2 class="text-white mt-3">Hospital Shops</h2>
-      <div class="d-flex w-100 p-2 mt-1" routerLink="/hospdetails">
-        <img
-          src="../../../assets/hospital-ico.png"
-          width="100"
-          height="100"
-          alt=""
-        />
-        <div class="d-flex flex-column my-auto mx-2">
-          <h4 class="text-white">Hospital Name</h4>
-          <h6 class="text-white">Location</h6>
-          <div class="d-flex">
-            <span style="font-size: 20px" class="text-danger">* </span>
-            <p class="text-white">7:00am - 7:00pm</p>
-          </div>
-        </div>
-        <i
-          style="color: white; margin-left: 1.5rem"
-          class="fa fa-long-arrow-right my-auto fa-lg"
-          aria-hidden="true"
-        ></i>
+      <h2 class="text-white mt-3">Hospitals</h2>
+      <div
+        *ngIf="hospitals?.length > 0; else noHospitals"
+        class="d-flex flex-column w-100 p-2 mt-2"
+      >
+        <ul *ngFor="let hosp of hospitals">
+          <li class="d-flex w-100 mt-4" (click)="hospDetails(hosp.id)">
+            <img
+              src="../../../assets/hospital-ico.png"
+              width="100"
+              height="100"
+              alt=""
+            />
+            <div class="d-flex flex-column my-auto mx-2">
+              <h4 class="text-white">{{ hosp.hospital_name }}</h4>
+              <h6 class="text-white">Location</h6>
+              <div class="d-flex">
+                <span style="font-size: 20px" class="text-danger">* </span>
+                <p class="text-white">7:00am - 7:00pm</p>
+              </div>
+            </div>
+            <i
+              style="color: white; margin-left: 1.5rem"
+              class="fa fa-long-arrow-right my-auto fa-lg"
+              aria-hidden="true"
+            ></i>
+          </li>
+        </ul>
       </div>
       <app-bottomnav></app-bottomnav>
     </div>
   </div>
 </div>
+
+<ng-template #noHospitals>
+  <hr />
+  <h5>There is no hospitals to show</h5>
+</ng-template>
