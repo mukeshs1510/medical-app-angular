@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AddpharmacyComponent } from './components/addpharmacy/addpharmacy.component';
+import { PharmacydetailsComponent } from './components/pharmacydetails/pharmacydetails.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddpharmacyComponent } from './components/addpharmacy/addpharmacy.compo
     HospitalsdetailsComponent,
     AddhospitalComponent,
     AddpharmacyComponent,
+    PharmacydetailsComponent,
   ],
   imports: [
     BrowserModule,

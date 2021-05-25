@@ -13,20 +13,25 @@ import { FirebaseserviceService } from '../services/firebaseservice.service';
 })
 export class MyaccountsComponent implements OnInit {
 
-  users: any = []
+  user: Users = {
+    name: '',
+    email: '',
+    password: '',
+  }
 
-  userName: string = ''
-  userEmail: string = ''
-  userMobile: string = ''
-
-  id: any
+  id: any = ''
 
   constructor(private firebaseService: FirebaseserviceService, private router: Router,
     public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.firebaseService.getUserDetails()
-    
+    this.id = this.firebaseAuth.currentUser.then(res => console.log(res.uid))
+    if(this.id != null) {
+      this.firebaseService.getUserDetails(this.id).subscribe(data => {
+        this.user = data
+        console.log(data)
+      })
+    }
   }
 
   onLogout() {

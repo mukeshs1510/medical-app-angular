@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PharmacyModel } from '../models/PharmacyModel';
+import { FirebaseserviceService } from '../services/firebaseservice.service';
 
 @Component({
   selector: 'app-pharmacy',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PharmacyComponent implements OnInit {
 
-  constructor() { }
+  pharmacy: PharmacyModel[]
+
+  constructor(private firebaseService: FirebaseserviceService, private routing: Router) { }
 
   ngOnInit(): void {
+    this.firebaseService.getPharmacy().subscribe(ph => {
+      this.pharmacy = ph
+      console.log(ph)
+    })
+  }
+
+  pharmacyDetails(id: string) {
+    this.routing.navigateByUrl('/pharmacydetails/'+id)
   }
 
 }

@@ -6,6 +6,7 @@ import { AddHospital } from '../models/addhospital';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { PharmacyModel } from '../models/PharmacyModel';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class FirebaseserviceService {
 
   user: any = []
   id: any;
+
+  hospitals: any = []
+  pharmacy: any = []
+  users: any = []
 
   constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore,private toastr: ToastrService,
     private router: Router) { 
@@ -58,30 +63,48 @@ export class FirebaseserviceService {
     return this.firebaseFirestore.collection("users").doc(id).set(users)
   }
   
-  async getUserDetails() {
-    this.id =  await this.firebaseAuth.currentUser.then(res => res.uid)
-    // return await this.firebaseFirestore.collection('users').doc(this.id).snapshotChanges().pipe(
-    //   map(actions => actions.map(a => {
-    //     const data = a.payload.doc.data() as any;
-    //     const id = a.payload.doc.id;
-    //     return { id, ...data };
-    //   }))
-    // );
+  getUserDetails(id: string) {
+    this.users = this.firebaseFirestore.collection("users").doc(id).valueChanges()
+    return this.users;
   }
 
   addHospitalDetails(hospitals: AddHospital) {
     return this.firebaseFirestore.collection("hospitals").add(hospitals);
   }
 
+  addPharmacyDetails(pharmacy: PharmacyModel) {
+    return this.firebaseFirestore.collection("pharmacy").add(pharmacy);
+  }
+
   getHospitals() {
     // return this.hospitals;
     return this.firebaseFirestore.collection("hospitals").snapshotChanges().pipe(
       map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as any;
         const id = a.payload.doc.id;
+        const data = a.payload.doc.data() as any;
         return { id, ...data }; 
       }))
     );
+  }
+
+  getSpecificHospitals(id: string) {
+    this.hospitals = this.firebaseFirestore.collection("hospitals").doc(id).valueChanges()
+    return this.hospitals;
+  }
+
+  getPharmacy() {
+    return this.firebaseFirestore.collection("pharmacy").snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
+
+  getSpecificPharmacy(id: string) {
+    this.pharmacy = this.firebaseFirestore.collection("pharmacy").doc(id).valueChanges()
+    return this.pharmacy;
   }
 
   toastMessage(textMessage: string, textTitle: string) {
