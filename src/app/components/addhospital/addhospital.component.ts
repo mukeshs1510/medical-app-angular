@@ -15,6 +15,7 @@ export class AddhospitalComponent implements OnInit {
     date: '',
     time: '',
     patient_cpr: '',
+    location: '',
   }
 
   constructor(private firebaseService: FirebaseserviceService, private toastr: ToastrService) { }
@@ -30,6 +31,7 @@ export class AddhospitalComponent implements OnInit {
       this.hospitals.date = '';
       this.hospitals.time = '';
       this.hospitals.patient_cpr = '';
+      this.hospitals.location = ''
       this.toastr.success("Hospital Added Successfully!", "Hospital Data")
     }
   }

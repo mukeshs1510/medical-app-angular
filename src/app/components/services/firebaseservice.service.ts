@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import {AngularFireAuth} from '@angular/fire/auth'
 import { Users } from '../models/usermodel';
 import { AddHospital } from '../models/addhospital';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -15,16 +15,12 @@ export class FirebaseserviceService {
   isLoggedIn = false
   uid: any = null
 
-  // hospitals: Observable<AddHospital[]>;
-  hospitals: any = []
-  user: Observable<Users[]>
+  user: any = []
   id: any;
 
   constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore,private toastr: ToastrService,
     private router: Router) { 
-      this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
-    
-    
+      // this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
   }
 
   async signIn(email: string, password: string) {
@@ -61,19 +57,16 @@ export class FirebaseserviceService {
   storeUsersDetails(id: string, users: any) {
     return this.firebaseFirestore.collection("users").doc(id).set(users)
   }
-
   
   async getUserDetails() {
-    //  let id = await this.firebaseAuth.currentUser.then(res => res.uid)
-    //  return this.firebaseFirestore.collection("users").doc(id).snapshotChanges().subscribe(
-    //    res => {
-    //      this.user = {
-    //        ...res.payload.data
-    //      }
-    //    }
-    //  )
-    this.id = await this.firebaseAuth.currentUser.then(res => res.uid)
-    return await this.firebaseFirestore.collection('users').doc(this.id).snapshotChanges();
+    this.id =  await this.firebaseAuth.currentUser.then(res => res.uid)
+    // return await this.firebaseFirestore.collection('users').doc(this.id).snapshotChanges().pipe(
+    //   map(actions => actions.map(a => {
+    //     const data = a.payload.doc.data() as any;
+    //     const id = a.payload.doc.id;
+    //     return { id, ...data };
+    //   }))
+    // );
   }
 
   addHospitalDetails(hospitals: AddHospital) {
@@ -81,7 +74,14 @@ export class FirebaseserviceService {
   }
 
   getHospitals() {
-    return this.hospitals;
+    // return this.hospitals;
+    return this.firebaseFirestore.collection("hospitals").snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data }; 
+      }))
+    );
   }
 
   toastMessage(textMessage: string, textTitle: string) {

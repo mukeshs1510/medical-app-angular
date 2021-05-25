@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { AddpharmacyComponent } from './components/addpharmacy/addpharmacy.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarrComponent,
     HospitalsdetailsComponent,
     AddhospitalComponent,
+    AddpharmacyComponent,
   ],
   imports: [
     BrowserModule,
