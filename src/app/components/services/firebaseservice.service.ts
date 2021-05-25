@@ -13,15 +13,18 @@ import { Router } from '@angular/router';
 export class FirebaseserviceService {
 
   isLoggedIn = false
-  users: Users
   uid: any = null
 
   // hospitals: Observable<AddHospital[]>;
   hospitals: any = []
+  user: Observable<Users[]>
+  id: any;
 
   constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore,private toastr: ToastrService,
     private router: Router) { 
-    this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
+      this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
+    
+    
   }
 
   async signIn(email: string, password: string) {
@@ -59,10 +62,18 @@ export class FirebaseserviceService {
     return this.firebaseFirestore.collection("users").doc(id).set(users)
   }
 
+  
   async getUserDetails() {
-     let id = await this.firebaseAuth.currentUser.then(res => res.uid)
-     console.log(id)
-     return this.firebaseFirestore.collection("users").doc(id).get();
+    //  let id = await this.firebaseAuth.currentUser.then(res => res.uid)
+    //  return this.firebaseFirestore.collection("users").doc(id).snapshotChanges().subscribe(
+    //    res => {
+    //      this.user = {
+    //        ...res.payload.data
+    //      }
+    //    }
+    //  )
+    this.id = await this.firebaseAuth.currentUser.then(res => res.uid)
+    return await this.firebaseFirestore.collection('users').doc(this.id).snapshotChanges();
   }
 
   addHospitalDetails(hospitals: AddHospital) {

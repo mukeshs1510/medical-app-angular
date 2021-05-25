@@ -12,14 +12,14 @@ export class MyaccountsComponent implements OnInit {
 
   users: Users[]
 
-  userName: string = ''
-  userEmail: string = ''
-  userMobile: string = ''
+  name: string = ''
+  email: string = ''
+  mobile: string = ''
 
   constructor(private firebaseService: FirebaseserviceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.firebaseService.getUserDetails().then(res => console.log(res.subscribe(res => console.log(res.ref.id))))
+    this.firebaseService.getUserDetails().then(rew=>console.log(rew))
   }
 
   onLogout() {
