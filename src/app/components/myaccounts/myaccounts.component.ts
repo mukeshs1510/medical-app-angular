@@ -24,8 +24,8 @@ export class MyaccountsComponent implements OnInit {
   constructor(private firebaseService: FirebaseserviceService, private router: Router,
     public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore) { }
 
-  ngOnInit(): void {
-    this.id = this.firebaseAuth.currentUser.then(res => console.log(res.uid))
+  async ngOnInit() {
+   await this.firebaseAuth.currentUser.then(res => this.id = res.uid)
     if(this.id != null) {
       this.firebaseService.getUserDetails(this.id).subscribe(data => {
         this.user = data
