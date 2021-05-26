@@ -1,88 +1,74 @@
-<div class="container bg bg-success">
+<div class="bg bg-success">
   <div class="row">
     <div class="col-12">
       <app-navbarr></app-navbarr>
+      <div class="row mt-5">
+        <div class="col-6 d-flex flex-column" routerLink="/hospital">
+          <img
+            class="mx-auto"
+            src="../../../assets/hospital-ico.png"
+            width="120"
+            height="120"
+            alt=""
+          />
+          <h6 class="mx-auto mt-2 text-white">Hospital</h6>
+        </div>
+        <div class="col-6 d-flex flex-column" routerLink="/appointment">
+          <img
+            class="mx-auto"
+            src="../../../assets/date.png"
+            width="120"
+            height="120"
+            alt=""
+          />
+          <h6 class="mx-auto mt-2 text-white">Appointments</h6>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-6 d-flex flex-column" routerLink="/pharmacy">
+          <img
+            class="mx-auto"
+            src="../../../assets/capsules.png"
+            width="120"
+            height="120"
+            alt=""
+          />
+          <h6 class="mx-auto mt-2 text-white">Pharmacy</h6>
+        </div>
+        <div class="col-6 d-flex flex-column">
+          <img
+            class="mx-auto"
+            src="../../../assets/medical-history.png"
+            width="120"
+            height="120"
+            alt=""
+          />
+          <h6 class="mx-auto mt-2 text-white">History</h6>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-6 d-flex flex-column">
+          <img
+            class="mx-auto"
+            src="../../../assets/health-insurance.png"
+            width="120"
+            height="120"
+            alt=""
+          />
+          <h6 class="mx-auto mt-2 text-white">Insurance</h6>
+        </div>
+        <div class="col-6 d-flex flex-column">
+          <img
+            class="mx-auto"
+            src="../../../assets/covid-test.png"
+            width="120"
+            height="120"
+            alt=""
+          />
+          <h6 class="mx-auto mt-2 text-white">Covid-19</h6>
+        </div>
+      </div>
     </div>
-    <div class="row mt-5">
-      <div class="col-6 d-flex flex-column" routerLink="/hospital">
-        <img
-          class="mx-auto"
-          src="../../../assets/hospital-ico.png"
-          width="120"
-          height="120"
-          alt=""
-        />
-        <h6 class="mx-auto mt-2 text-white">Hospital</h6>
-      </div>
-      <div class="col-6 d-flex flex-column" routerLink="/appointment">
-        <img
-          class="mx-auto"
-          src="../../../assets/date.png"
-          width="120"
-          height="120"
-          alt=""
-        />
-        <h6 class="mx-auto mt-2 text-white">Appointments</h6>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-6 d-flex flex-column" routerLink="/pharmacy">
-        <img
-          class="mx-auto"
-          src="../../../assets/capsules.png"
-          width="120"
-          height="120"
-          alt=""
-        />
-        <h6 class="mx-auto mt-2 text-white">Pharmacy</h6>
-      </div>
-      <div class="col-6 d-flex flex-column">
-        <img
-          class="mx-auto"
-          src="../../../assets/medical-history.png"
-          width="120"
-          height="120"
-          alt=""
-        />
-        <h6 class="mx-auto mt-2 text-white">History</h6>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-6 d-flex flex-column">
-        <img
-          class="mx-auto"
-          src="../../../assets/health-insurance.png"
-          width="120"
-          height="120"
-          alt=""
-        />
-        <h6 class="mx-auto mt-2 text-white">Insurance</h6>
-      </div>
-      <div class="col-6 d-flex flex-column">
-        <img
-          class="mx-auto"
-          src="../../../assets/covid-test.png"
-          width="120"
-          height="120"
-          alt=""
-        />
-        <h6 class="mx-auto mt-2 text-white">Covid-19</h6>
-      </div>
-    </div>
-
-    <!-- <div class="row">
-      <div class="col-12 bottom-nav">
-        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-        <span class="border-home"
-          ><i class="fa fa-home fa-3x home-icon" aria-hidden="true"></i
-        ></span>
-        <i
-          class="fa fa-user fa-2x"
-          aria-hidden="true"
-          routerLink="/account"
-        ></i>
-      </div>
-    </div> -->
     <app-bottomnav></app-bottomnav>
   </div>
 </div>

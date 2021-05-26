@@ -5,15 +5,12 @@
 }
 
 .bg {
-  position: absolute;
-  height: 100vh;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
+  width: 100%;
   padding: 1rem;
-  left: 0px;
+  height: 100vh;
   flex-direction: column;
 }
+
 .input-fields {
   border-radius: 4px;
 }

@@ -5,13 +5,9 @@
 }
 
 .bg {
-  position: absolute;
-  height: 100vh;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
+  display: flex;
   padding: 1rem;
-  left: 0px;
+  height: 100vh;
   flex-direction: column;
 }
 
