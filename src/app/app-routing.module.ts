@@ -12,6 +12,7 @@ import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospita
 import { AddhospitalComponent } from './components/addhospital/addhospital.component';
 import { AddpharmacyComponent } from './components/addpharmacy/addpharmacy.component';
 import { PharmacydetailsComponent } from './components/pharmacydetails/pharmacydetails.component';
+import { Covid19Component } from './components/covid19/covid19.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: "addpharmacy", component: AddpharmacyComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "pharmacydetails/:id", component: PharmacydetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "pharmacydetails", component: PharmacydetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
+  {path: "covid", component: Covid19Component,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
 ];
 
 @NgModule({

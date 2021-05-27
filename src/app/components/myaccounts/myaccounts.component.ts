@@ -28,8 +28,9 @@ export class MyaccountsComponent implements OnInit {
    await this.firebaseAuth.currentUser.then(res => this.id = res.uid)
     if(this.id != null) {
       this.firebaseService.getUserDetails(this.id).subscribe(data => {
-        this.user = data
-        console.log(data)
+        this.user.name = data['name']
+        this.user.email = data['email']
+        this.user.password = data['password']
       })
     }
   }

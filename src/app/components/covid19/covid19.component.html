@@ -1,0 +1,119 @@
+<div class="bg">
+  <div class="row">
+    <div class="col-12">
+      <app-navbarr></app-navbarr>
+      <div class="d-flex flex-column mt-2">
+        <h2 class="my-2 text-white">Covid-19</h2>
+        <div class="card px-2 py-3 mt-2">
+          <div class="form-group">
+            <label>Your Covid check?</label>
+            <div class="form-control d-flex flex-column">
+              <label>
+                <input
+                  type="radio"
+                  value="positive"
+                  name="covidcheck"
+                  [(ngModel)]="covidModel.isPositive"
+                />
+                Positive
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="nagative"
+                  name="covidcheck"
+                  [(ngModel)]="covidModel.isPositive"
+                />
+                Nagative
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="card px-2 py-3 mt-3">
+          <h4>Vaccine Status:</h4>
+          <div class="form-group">
+            <label>Have you took the first dose?</label>
+            <div class="form-control">
+              <label class="radio-inline">
+                <input
+                  type="radio"
+                  value="yes"
+                  name="hadvaccine"
+                  [(ngModel)]="covidModel.hadVaccine"
+                />
+                Yes
+              </label>
+              <label class="radio-inline mx-3">
+                <input
+                  type="radio"
+                  value="no"
+                  name="hadvaccine"
+                  [(ngModel)]="covidModel.hadVaccine"
+                />
+                No
+              </label>
+            </div>
+          </div>
+          <label class="mt-2">When you took your vaccine?</label>
+          <div class="w-100 d-flex shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-calendar my-auto bg-light border border-dark rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields ml-1 w-100 p-2"
+              type="date"
+              name="name"
+              placeholder="Date, when you got vaccined"
+              #block
+            />
+          </div>
+
+          <label class="mt-2">Location of your vaccination</label>
+          <div class="w-100 d-flex shadow">
+            <i
+              style="padding: 12px"
+              class="
+                fa fa-map-marker
+                my-auto
+                bg-whie
+                border border-dark
+                rounded
+              "
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2 ml-1"
+              type="text"
+              placeholder="Location"
+              [(ngModel)]="covidModel.vaccinedLocation"
+            />
+          </div>
+          <label class="mt-2">Type of the Vaccine</label>
+          <div class="w-100 d-flex shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-question my-auto bg-whie border border-dark rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2 ml-1"
+              type="text"
+              [(ngModel)]="covidModel.typeOfVaccine"
+              placeholder="Type"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn w-100 py-2 rounded-pill shadow mt-5"
+        style="background-color: beige"
+        (click)="saveDetailsCovid()"
+      >
+        Save Details of Covid-19
+      </button>
+    </div>
+    <app-bottomnav></app-bottomnav>
+  </div>
+</div>

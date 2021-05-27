@@ -1,4 +1,4 @@
-<div class="bg bg-success">
+<div class="bg">
   <div class="row">
     <div class="col-12">
       <app-navbarr></app-navbarr>
@@ -22,6 +22,7 @@
                 type="text"
                 name="name"
                 placeholder="Your name"
+                [(ngModel)]="user.name"
               />
             </div>
             <div class="w-100 d-flex mt-1">
@@ -32,8 +33,9 @@
               <input
                 class="input-fields w-100 p-1"
                 type="text"
-                name="name"
+                name="email"
                 placeholder="Email-address"
+                [(ngModel)]="user.email"
               />
             </div>
             <div class="w-100 d-flex mt-1">
@@ -46,7 +48,7 @@
                 class="input-fields w-100 p-1"
                 type="text"
                 placeholder="Mobile number"
-                name="name"
+                name="number"
               />
             </div>
           </form>
@@ -81,6 +83,7 @@
               name="name"
               placeholder="Change password"
               #block
+              [(ngModel)]="user.password"
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
