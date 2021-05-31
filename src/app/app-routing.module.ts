@@ -9,8 +9,6 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
 import { MyaccountsComponent } from './components/myaccounts/myaccounts.component';
 import { PharmacyComponent } from './components/pharmacy/pharmacy.component';
 import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospitalsdetails.component';
-import { AddhospitalComponent } from './components/addhospital/addhospital.component';
-import { AddpharmacyComponent } from './components/addpharmacy/addpharmacy.component';
 import { PharmacydetailsComponent } from './components/pharmacydetails/pharmacydetails.component';
 import { Covid19Component } from './components/covid19/covid19.component';
 
@@ -28,8 +26,6 @@ const routes: Routes = [
   {path: "pharmacy", component: PharmacyComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "hospdetails", component: HospitalsdetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "hospdetails/:id", component: HospitalsdetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
-  {path: "addhospital", component: AddhospitalComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
-  {path: "addpharmacy", component: AddpharmacyComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "pharmacydetails/:id", component: PharmacydetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "pharmacydetails", component: PharmacydetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "covid", component: Covid19Component,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},

@@ -48,6 +48,7 @@
                 class="input-fields w-100 p-1"
                 type="text"
                 placeholder="Mobile number"
+                [(ngModel)]="user.mobile"
                 name="number"
               />
             </div>
@@ -116,7 +117,10 @@
           </div>
         </form>
       </div>
-      <button class="btn btn-secondary w-100 py-2 rounded shadow mt-5">
+      <button
+        class="btn btn-secondary w-100 py-2 rounded shadow mt-5"
+        (click)="editUserDetails()"
+      >
         Save Changes
       </button>
       <button

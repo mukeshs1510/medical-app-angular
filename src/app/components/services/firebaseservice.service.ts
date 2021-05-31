@@ -49,7 +49,7 @@ export class FirebaseserviceService {
       this.router.navigateByUrl('/login')
       this.toastMessage("Email verification mail sent!", "Email verification")
       this.isLoggedIn = true
-      localStorage.setItem('user',JSON.stringify(res.user));
+      localStorage.setItem('user', JSON.stringify(res.user));
       this.storeUsersDetails(res.user.uid, users)
     })
   }
@@ -113,6 +113,12 @@ export class FirebaseserviceService {
 
   toastMessageFaild(textMessage: string, textTitle: string) {
     this.toastr.info(textMessage, textTitle);
+  }
+
+  updateSpecificUser(user: Users, id: string) {
+    return this.firebaseFirestore.collection("users").doc(id).set(user).then(res => {
+      this.toastMessage("Successfully Updated", "UserDetails Updation")
+    })
   }
 
 }

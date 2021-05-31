@@ -17,6 +17,7 @@ export class MyaccountsComponent implements OnInit {
     name: '',
     email: '',
     password: '',
+    mobile: null,
   }
 
   id: any = ''
@@ -28,9 +29,8 @@ export class MyaccountsComponent implements OnInit {
    await this.firebaseAuth.currentUser.then(res => this.id = res.uid)
     if(this.id != null) {
       this.firebaseService.getUserDetails(this.id).subscribe(data => {
-        this.user.name = data['name']
-        this.user.email = data['email']
-        this.user.password = data['password']
+        this.user = data
+        console.log(data)
       })
     }
   }
@@ -38,6 +38,10 @@ export class MyaccountsComponent implements OnInit {
   onLogout() {
     this.firebaseService.signOut();
     this.router.navigateByUrl('/login')
+  }
+
+  editUserDetails() {
+    this.firebaseService.updateSpecificUser(this.user, this.id);
   }
 
 }

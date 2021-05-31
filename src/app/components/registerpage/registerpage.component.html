@@ -32,6 +32,13 @@
         />
         <input
           class="input-fields w-100 p-2 mt-2"
+          placeholder="Mobile number"
+          type="number"
+          name="number"
+          #mobile
+        />
+        <input
+          class="input-fields w-100 p-2 mt-2"
           placeholder="Password"
           type="password"
           name="password"
@@ -53,7 +60,13 @@
         <button
           class="w-50 text-white p-2 btn"
           (click)="
-            onSignUp(name.value, email.value, password.value, conPass.value)
+            onSignUp(
+              name.value,
+              email.value,
+              mobile.value,
+              password.value,
+              conPass.value
+            )
           "
         >
           Register

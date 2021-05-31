@@ -55,20 +55,28 @@
             </div>
           </div>
           <label class="mt-2">When you took your vaccine?</label>
-          <div class="w-100 d-flex shadow">
-            <i
-              style="padding: 12px"
-              class="fa fa-calendar my-auto bg-light border border-dark rounded"
-              aria-hidden="true"
-            ></i>
-            <input
-              class="input-fields ml-1 w-100 p-2"
-              type="date"
-              name="name"
-              placeholder="Date, when you got vaccined"
-              #block
-            />
-          </div>
+          <ng-container *ngIf="covidModel.hadVaccine == 'yes'">
+            <div class="w-100 d-flex shadow">
+              <i
+                style="padding: 12px"
+                class="
+                  fa fa-calendar
+                  my-auto
+                  bg-light
+                  border border-dark
+                  rounded
+                "
+                aria-hidden="true"
+              ></i>
+              <input
+                class="input-fields ml-1 w-100 p-2"
+                type="date"
+                name="name"
+                placeholder="Date, when you got vaccined"
+                #block
+              />
+            </div>
+          </ng-container>
 
           <label class="mt-2">Location of your vaccination</label>
           <div class="w-100 d-flex shadow">

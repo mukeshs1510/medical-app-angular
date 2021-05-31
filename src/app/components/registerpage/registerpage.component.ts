@@ -21,11 +21,12 @@ export class RegisterpageComponent implements OnInit {
       this.isSignedIn = false
   }
 
-  async onSignUp(name:string, email: string, password: string, conPass: string) {
+  async onSignUp(name:string, email: string, mobile: number, password: string, conPass: string) {
     if(password.match(conPass)) {
       let Users = {}
     Users['name'] = name;
     Users['email'] = email;
+    Users['mobile'] = mobile;
     Users['password'] = password;
       await this.firebaseService.signUp(email, password, Users)
       if(this.firebaseService.isLoggedIn) {

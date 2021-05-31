@@ -11,14 +11,33 @@
               class="fa fa-h-square my-auto bg-white rounded"
               aria-hidden="true"
             ></i>
-            <input
-              class="input-fields w-100 p-2 shadow"
-              type="text"
-              name="name"
-              placeholder="Hospital name"
-              #block
-            />
+            <div class="dropdown w-100">
+              <button
+                class="btn btn-light dropdown-toggle w-100 p-2 ml-1"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Select Hospital
+              </button>
+              <div
+                class="dropdown-menu w-100 p-2 ml-1"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <ul *ngFor="let hosp of hospitals">
+                  <li
+                    class="dropdown-item p-2"
+                    (click)="selectedHospital(hosp.id, hosp.hospital_name)"
+                  >
+                    {{ hosp.hospital_name }}
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
+
           <div class="w-100 d-flex mt-3 shadow">
             <i
               style="padding: 12px"
@@ -42,7 +61,7 @@
             <input
               class="input-fields w-100 p-2"
               type="time"
-              name="name"
+              name="time"
               placeholder="Time"
               #block
             />
@@ -56,7 +75,7 @@
             <input
               class="input-fields w-100 p-2"
               type="text"
-              name="name"
+              name="roomnumber"
               placeholder="Room Number"
               #block
             />
@@ -70,7 +89,7 @@
             <input
               class="input-fields w-100 p-2"
               type="text"
-              name="name"
+              name="patient"
               placeholder="Patient name"
               #block
             />

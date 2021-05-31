@@ -14,14 +14,14 @@ import { MyaccountsComponent } from './components/myaccounts/myaccounts.componen
 import { BottomnavComponent } from './components/utilitie/bottomnav/bottomnav.component';
 import { NavbarrComponent } from './components/utilitie/navbarr/navbarr.component';
 import { HospitalsdetailsComponent } from './components/hospitalsdetails/hospitalsdetails.component';
-import { AddhospitalComponent } from './components/addhospital/addhospital.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { AddpharmacyComponent } from './components/addpharmacy/addpharmacy.component';
 import { PharmacydetailsComponent } from './components/pharmacydetails/pharmacydetails.component';
 import { Covid19Component } from './components/covid19/covid19.component';
+import { CommonModule } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,26 +36,19 @@ import { Covid19Component } from './components/covid19/covid19.component';
     BottomnavComponent,
     NavbarrComponent,
     HospitalsdetailsComponent,
-    AddhospitalComponent,
-    AddpharmacyComponent,
     PharmacydetailsComponent,
     Covid19Component,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ToastrModule.forRoot(), 
     FormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), 
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyBS-XkBc_GDz7CxnXJ82UcNSO1LNR3PSW8",
-    authDomain: "todo-angular-f6670.firebaseapp.com",
-    projectId: "todo-angular-f6670",
-    storageBucket: "todo-angular-f6670.appspot.com",
-    messagingSenderId: "1064831245824",
-    appId: "1:1064831245824:web:035dfdffc2ba030d7042e5",
-    measurementId: "G-88J244BGNM"
-    })
+    CommonModule,
+    AngularFireModule.initializeApp(
+      environment.firebase
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
