@@ -39,14 +39,14 @@
             <div class="form-group w-100">
               <select
                 class="form-control ml-1 w-100"
-                id="college"
-                [(ngModel)]="selectedValue"
-                name="college_name"
-                value="Hekvdo"
+                [(ngModel)]="selectedHospital"
+                name="hospital_name"
+                (change)="selecteHospital()"
                 required
               >
+                <option value="Select Hospital">Select Hospital</option>
                 <optgroup *ngFor="let hosp of hospitals">
-                  <option value="college">
+                  <option value="s">
                     {{ hosp.hospital_name }}
                   </option>
                 </optgroup>

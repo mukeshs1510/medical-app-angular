@@ -87,6 +87,16 @@ export class FirebaseserviceService {
     );
   }
 
+  async getHospitalsForSelect() {
+    return await this.firebaseFirestore.collection("hospitals").get().pipe(
+      map(actions => actions.docs.map(a => {
+        const data = a.data() as any;
+        const id = a.id;
+        return { id, ...data };
+      }))
+    )
+  }
+
   getSpecificHospitals(id: string) {
     this.hospitals = this.firebaseFirestore.collection("hospitals").doc(id).valueChanges()
     return this.hospitals;
