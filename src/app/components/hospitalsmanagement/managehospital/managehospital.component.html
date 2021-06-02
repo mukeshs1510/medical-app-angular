@@ -1,0 +1,75 @@
+<div class="bg">
+  <div class="row">
+    <div class="col-12">
+      <app-navbarhospital></app-navbarhospital>
+      <div class="d-flex flex-column mt-3">
+        <h4 class="my-2 text-white">Manage Your Hospital</h4>
+        <form>
+          <div class="w-100 d-flex mt-2 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-h-square my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="text"
+              name="hospname"
+              placeholder="Hospital Name"
+              #block
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-clock-o my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="time"
+              name="timing"
+              placeholder="Timing"
+              #timing
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-address-book-o my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="text"
+              name="location"
+              placeholder="Location"
+              #location
+            />
+          </div>
+          <div class="w-100 d-flex mt-3 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-user my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-2"
+              type="text"
+              name="remainingbed"
+              placeholder="Remaining bed"
+              #remainingbed
+            />
+          </div>
+        </form>
+      </div>
+      <button class="btn btn-primary w-100 py-2 rounded-pill shadow mt-5">
+        Save Changes
+      </button>
+      <button class="btn btn-danger w-100 py-2 rounded-pill shadow mt-3">
+        Cancel
+      </button>
+    </div>
+    <app-bottomnavhospital></app-bottomnavhospital>
+  </div>
+</div>

@@ -28,6 +28,23 @@ export class FirebaseserviceService {
       // this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
   }
 
+  async checkHospitalOrNormalUser(email: string, password: string) {
+    await this.firebaseAuth.signInWithEmailAndPassword(email, password)
+    .then(res => {
+      let uid = res.user.uid
+      this.firebaseFirestore.collection("registerdHospitals").doc(uid).ref.get().then(res => {
+        if(res.exists) {
+          this.router.navigateByUrl("/hospitalHome")
+        } else {
+          console.log("try another way")
+          this.signOut()
+          this.signIn(email, password)
+        }
+      }
+      )
+    })
+  }
+
   async signIn(email: string, password: string) {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then(res => {
@@ -52,6 +69,26 @@ export class FirebaseserviceService {
       localStorage.setItem('user', JSON.stringify(res.user));
       this.storeUsersDetails(res.user.uid, users)
     })
+  }
+
+  async signUpHospital(email: string, password: string, hospital: any) {
+    await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+    .then(res => {
+      this.isLoggedIn = true
+      this.storeHospitalDetails(res.user.uid, hospital)
+    })
+  }
+
+  storeHospitalDetails(id: string, hospital: any) {
+    return this.firebaseFirestore.collection("registerdHospitals")
+    .doc(id)
+    .set(hospital).then(res => 
+      {
+        this.router.navigateByUrl('/hospitalHome')
+      alert("Successfully Registered!")
+      }
+      )
+    
   }
 
   signOut() {

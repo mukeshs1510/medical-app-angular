@@ -1,0 +1,102 @@
+<div class="bg">
+  <div class="row">
+    <div class="col-12">
+      <app-navbarhospital></app-navbarhospital>
+      <div class="d-flex flex-column mt-3">
+        <h4 class="my-2 text-white">Manage Your Pharmacy</h4>
+        <ng-container *ngIf="noPharmacy">
+          <h2 class="my-4">No pharmacy found!</h2>
+          <div class="btn btn-primary w-50 p-2" (click)="showForm()">
+            Add Now
+          </div>
+        </ng-container>
+        <ng-container *ngIf="hasPharmacy">
+          <form>
+            <div class="w-100 d-flex mt-2 shadow">
+              <i
+                style="padding: 12px"
+                class="fa fa-h-square my-auto bg-white rounded"
+                aria-hidden="true"
+              ></i>
+              <input
+                class="input-fields w-100 p-2"
+                type="text"
+                name="pharmpname"
+                placeholder="Pharmacy Name"
+                #pharmpname
+              />
+            </div>
+            <div class="w-100 d-flex mt-3 shadow">
+              <i
+                style="padding: 12px"
+                class="fa fa-clock-o my-auto bg-white rounded"
+                aria-hidden="true"
+              ></i>
+              <input
+                class="input-fields w-100 p-2"
+                type="time"
+                name="timing"
+                placeholder="Timing"
+                #timing
+              />
+            </div>
+            <div class="w-100 d-flex mt-3 shadow">
+              <i
+                style="padding: 12px"
+                class="fa fa-address-book-o my-auto bg-white rounded"
+                aria-hidden="true"
+              ></i>
+              <input
+                class="input-fields w-100 p-2"
+                type="text"
+                name="location"
+                placeholder="Location"
+                #location
+              />
+            </div>
+            <div class="w-100 d-flex mt-3 shadow">
+              <i
+                style="padding: 12px"
+                class="fa fa-user my-auto bg-white rounded"
+                aria-hidden="true"
+              ></i>
+              <input
+                class="input-fields w-100 p-2"
+                type="text"
+                name="shopkeeper"
+                placeholder="Shopkeeper Name"
+                #shopkeeper
+              />
+            </div>
+            <div class="w-100 d-flex mt-3 shadow">
+              <i
+                style="padding: 12px"
+                class="fa fa-mobile my-auto bg-white rounded"
+                aria-hidden="true"
+              ></i>
+              <input
+                class="input-fields w-100 p-2"
+                type="number"
+                name="mnumber"
+                placeholder="Mobile Number"
+                #mnumber
+              />
+            </div>
+          </form>
+        </ng-container>
+      </div>
+      <ng-container *ngIf="hasPharmacy">
+        <button class="btn btn-primary w-100 py-2 rounded-pill shadow mt-5">
+          Save Changes
+        </button>
+        <button
+          class="btn btn-danger w-100 py-2 rounded-pill shadow mt-3"
+          (click)="cancleAddingPharm()"
+        >
+          Cancel
+        </button>
+      </ng-container>
+    </div>
+    <app-bottomnavhospital></app-bottomnavhospital>
+  </div>
+</div>
