@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddHospital } from '../../models/addhospital';
 import { FirebaseserviceService } from '../../services/firebaseservice.service';
 
@@ -14,10 +14,12 @@ export class AppointmentsComponent implements OnInit {
 
   hospitalName: string = ""
   selectedHospital: string = ""
+  id: string = ''
 
-  constructor(private firebaseService: FirebaseserviceService, private routing: Router) { }
+  constructor(private firebaseService: FirebaseserviceService, private routing: Router, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     (await this.firebaseService.getHospitalsForSelect()).subscribe(hosp => {
       this.hospitals = hosp
     })

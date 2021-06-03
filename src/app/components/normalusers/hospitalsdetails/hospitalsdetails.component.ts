@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddHospital } from '../../models/addhospital';
 import { FirebaseserviceService } from '../../services/firebaseservice.service';
 
@@ -20,7 +20,8 @@ export class HospitalsdetailsComponent implements OnInit {
     imageUrl: '',
   }
 
-  constructor(private route: ActivatedRoute, private firebaseService: FirebaseserviceService) { }
+  constructor(private route: ActivatedRoute, private firebaseService: FirebaseserviceService,
+    private routing: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -29,6 +30,10 @@ export class HospitalsdetailsComponent implements OnInit {
         this.hospital = data
       })
     }
+  }
+
+  takeAppointment() {
+    this.routing.navigateByUrl('/appointment/'+this.id)
   }
 
 }

@@ -35,6 +35,7 @@ const routes: Routes = [
   {path: "otherHosp", component: OtherdetailsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "hospital", component: HospitalsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "appointment", component: AppointmentsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
+  {path: "appointment/:id", component: AppointmentsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "account", component: MyaccountsComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "hospaccount", component: HospitalaccountComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   {path: "pharmacy", component: PharmacyComponent,canActivate:  [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
