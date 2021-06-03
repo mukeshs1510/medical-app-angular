@@ -16,6 +16,7 @@
               type="text"
               name="hospname"
               placeholder="Hospital Name"
+              [(ngModel)]="hospitalDetails.hospital_name"
               #block
             />
           </div>
@@ -30,6 +31,7 @@
               type="time"
               name="timing"
               placeholder="Timing"
+              [(ngModel)]="hospitalDetails.time"
               #timing
             />
           </div>
@@ -44,6 +46,7 @@
               type="text"
               name="location"
               placeholder="Location"
+              [(ngModel)]="hospitalDetails.location"
               #location
             />
           </div>
@@ -58,6 +61,7 @@
               type="text"
               name="remainingbed"
               placeholder="Remaining bed"
+              [(ngModel)]="hospitalDetails.remaining_bed"
               #remainingbed
             />
           </div>

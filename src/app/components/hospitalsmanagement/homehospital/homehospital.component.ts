@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homehospital',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomehospitalComponent implements OnInit {
 
-  constructor() { }
+  uidHosp: string = ""
+
+  constructor(private firebaseAuth: AngularFireAuth, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  async manageHosp() {
+    await this.firebaseAuth.currentUser.then(res => {
+      this.uidHosp = res.uid
+      this.router.navigateByUrl("/manageHosp/"+this.uidHosp)
+    })
+
   }
 
 }

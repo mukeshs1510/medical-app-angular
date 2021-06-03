@@ -20,6 +20,8 @@ export class FirebaseserviceService {
   id: any;
 
   hospitals: any = []
+  hospitalManage: any = []
+
   pharmacy: any = []
   users: any = []
 
@@ -137,6 +139,11 @@ export class FirebaseserviceService {
   getSpecificHospitals(id: string) {
     this.hospitals = this.firebaseFirestore.collection("hospitals").doc(id).valueChanges()
     return this.hospitals;
+  }
+
+  getSpecificManegedHospital(uid: any) {
+      this.hospitalManage = this.firebaseFirestore.collection("registerdHospitals").doc(uid).valueChanges()
+      return this.hospitalManage;
   }
 
   getPharmacy() {
