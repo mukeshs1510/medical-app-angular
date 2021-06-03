@@ -17,6 +17,7 @@ export class HospitalsdetailsComponent implements OnInit {
     time: '',
     patient_cpr: '',
     location: '',
+    imageUrl: '',
   }
 
   constructor(private route: ActivatedRoute, private firebaseService: FirebaseserviceService) { }

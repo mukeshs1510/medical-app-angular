@@ -4,4 +4,5 @@ export class AddHospital {
     time?: string;
     patient_cpr?: string;
     location?: string;
+    imageUrl?: string;
 }

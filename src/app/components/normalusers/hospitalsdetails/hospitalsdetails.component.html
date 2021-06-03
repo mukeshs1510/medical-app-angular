@@ -3,12 +3,7 @@
     <div class="col-12">
       <app-navbarr></app-navbarr>
       <div class="d-flex w-100 p-2 mt-1" routerLink="/hospdetails">
-        <img
-          src="../../../assets/hospital-ico.png"
-          width="100"
-          height="100"
-          alt=""
-        />
+        <img [src]="hospital.imageUrl" width="100" height="100" alt="" />
         <div style="margin-left: 2.5rem" class="d-flex flex-column my-auto">
           <h2 class="text-white">{{ hospital.hospital_name }}</h2>
           <h5 class="text-white">{{ hospital.date }}</h5>

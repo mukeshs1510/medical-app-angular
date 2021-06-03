@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FirebaseserviceService } from '../../services/firebaseservice.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { FirebaseserviceService } from '../../services/firebaseservice.service';
 })
 export class HospitalaccountComponent implements OnInit {
 
-  constructor(private firebaseServices: FirebaseserviceService) { }
+  constructor(private firebaseServices: FirebaseserviceService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +19,7 @@ export class HospitalaccountComponent implements OnInit {
 
   onLogout() {
     this.firebaseServices.signOut();
+    this.router.navigateByUrl("/login")
   }
 
 }

@@ -4,72 +4,74 @@
       <app-navbarhospital></app-navbarhospital>
       <div class="d-flex w-100 mt-3">
         <img
-          class="my-auto"
-          src="../../../assets/user-account.png"
-          width="120"
-          height="120"
+          class="my-auto w-100"
+          src="../../../../assets/map.jpg"
+          height="140"
           alt="account"
         />
-        <div class="my-auto">
-          <form>
-            <div class="w-100 d-flex">
-              <i
-                class="fa fa-user-o my-auto p-2 bg-white rounded"
-                aria-hidden="true"
-              ></i>
-              <input
-                class="input-fields p-1 w-100"
-                type="text"
-                name="name"
-                placeholder="Your name"
-              />
-            </div>
-            <div class="w-100 d-flex mt-1">
-              <i
-                class="fa fa-envelope-o my-auto p-2 bg-white rounded"
-                aria-hidden="true"
-              ></i>
-              <input
-                class="input-fields w-100 p-1"
-                type="text"
-                name="email"
-                placeholder="Email-address"
-              />
-            </div>
-            <div class="w-100 d-flex mt-1">
-              <i
-                style="padding-left: 10px; padding-right: 10px"
-                class="fa fa-mobile fa-lg my-auto py-2 bg-white rounded"
-                aria-hidden="true"
-              ></i>
-              <input
-                class="input-fields w-100 p-1"
-                type="text"
-                placeholder="Mobile number"
-                name="number"
-              />
-            </div>
-          </form>
-        </div>
       </div>
       <div class="d-flex flex-column mt-4">
-        <h4 class="my-2 text-white">Other Informations</h4>
+        <h4 class="my-2 text-white">Hospital's Informations</h4>
         <form>
           <div class="w-100 d-flex mt-1 shadow">
             <i
               style="padding: 12px"
-              class="fa fa-home my-auto bg-white rounded"
+              class="fa fa-user-o my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields p-1 w-100"
+              type="text"
+              name="name"
+              placeholder="Your name"
+            />
+          </div>
+          <div class="w-100 d-flex mt-1 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-envelope-o my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-1"
+              type="text"
+              name="email"
+              placeholder="Email-address"
+            />
+          </div>
+          <div class="w-100 d-flex mt-1 shadow">
+            <i
+              style="
+                padding-top: 12px;
+                padding-bottom: 12px;
+                padding-left: 15px;
+                padding-right: 15px;
+              "
+              class="fa fa-mobile fa-lg my-auto bg-white rounded"
+              aria-hidden="true"
+            ></i>
+            <input
+              class="input-fields w-100 p-1"
+              type="text"
+              placeholder="Mobile number"
+              name="number"
+            />
+          </div>
+          <div class="w-100 d-flex mt-1 shadow">
+            <i
+              style="padding: 12px"
+              class="fa fa-plus-square my-auto bg-white rounded"
               aria-hidden="true"
             ></i>
             <input
               class="input-fields w-100 p-2 shadow"
               type="text"
-              name="name"
-              placeholder="Your Block"
-              #password
+              name="pharmacy"
+              placeholder="Pharmacy Name (If any)"
+              #pharmacy
             />
           </div>
-          <div class="w-100 d-flex mt-3 shadow">
+          <div class="w-100 d-flex mt-1 shadow">
             <i
               style="padding: 12px"
               class="fa fa-key my-auto bg-white rounded"
@@ -80,34 +82,6 @@
               type="text"
               name="name"
               placeholder="Change password"
-              #block
-            />
-          </div>
-          <div class="w-100 d-flex mt-3 shadow">
-            <i
-              style="padding: 12px"
-              class="fa fa-calendar-check-o my-auto bg-white rounded"
-              aria-hidden="true"
-            ></i>
-            <input
-              class="input-fields w-100 p-2"
-              type="text"
-              name="name"
-              placeholder="Last Appointment"
-              #block
-            />
-          </div>
-          <div class="w-100 d-flex mt-3 shadow">
-            <i
-              style="padding: 12px"
-              class="fa fa-hospital-o my-auto bg-white rounded"
-              aria-hidden="true"
-            ></i>
-            <input
-              class="input-fields w-100 p-2"
-              type="text"
-              name="name"
-              placeholder="Favorite Hospital"
               #block
             />
           </div>
