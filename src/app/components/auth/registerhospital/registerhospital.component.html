@@ -20,6 +20,7 @@
           type="name"
           name="name"
           id="name"
+          [(ngModel)]="hospital.hospital_name"
           #hospname
         />
         <input
@@ -28,6 +29,7 @@
           type="email"
           name="email"
           id="email-login"
+          [(ngModel)]="hospital.email"
           #email
         />
         <input
@@ -35,6 +37,7 @@
           placeholder="Location"
           type="text"
           name="location"
+          [(ngModel)]="hospital.location"
           #location
         />
         <input
@@ -42,6 +45,7 @@
           placeholder="Timing"
           type="time"
           name="timing"
+          [(ngModel)]="hospital.timing"
           #timing
         />
         <input
@@ -50,6 +54,7 @@
           type="password"
           name="password"
           id="password-login"
+          [(ngModel)]="hospital.password"
           #password
         />
         <input
@@ -66,24 +71,12 @@
         </button>
         <button
           class="w-50 text-white p-2 btn"
-          (click)="
-            onSignUpHospital(
-              hospname.value,
-              email.value,
-              location.value,
-              password.value,
-              conPass.value,
-              timing.value
-            )
-          "
+          (click)="onSignUpHospital(email.value, password.value, conPass.value)"
         >
           Register
         </button>
       </div>
-
-      <p class="text-white mt-2" routerLink="/registerHospital">
-        Register as a Hospital?
-      </p>
+      <p class="text-white mt-2" routerLink="/login">Go Back</p>
     </div>
   </div>
 </div>

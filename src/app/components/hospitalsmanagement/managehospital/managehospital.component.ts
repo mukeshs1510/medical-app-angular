@@ -13,9 +13,14 @@ export class ManagehospitalComponent implements OnInit {
   hospitalDetails: ManageHospModel = {
     hospital_name: "",
     location: "",
-    time: "",
+    timing: "",
     imageUrl: "",
     remaining_bed: "",
+    owner_name: "",
+    email: "",
+    mobile: "",
+    password: "",
+    pharmacy_name: "",
   }
   uidHosp: string = ""
 
@@ -27,6 +32,14 @@ export class ManagehospitalComponent implements OnInit {
       this.firebaseService.getSpecificManegedHospital(this.uidHosp).subscribe(res => {
         this.hospitalDetails = res
       })
+    }
+  }
+
+  editHospital() {
+    if(this.hospitalDetails.hospital_name != '' && this.hospitalDetails.timing != '' 
+    && this.hospitalDetails.location != '' 
+    && this.hospitalDetails.remaining_bed != '') {
+     this.firebaseService.updateSpecificHospital(this.hospitalDetails, this.uidHosp);
     }
   }
 

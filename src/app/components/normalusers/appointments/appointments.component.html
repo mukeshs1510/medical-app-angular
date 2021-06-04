@@ -36,22 +36,35 @@
                 </ul>
               </div>
             </div> -->
-            <div class="form-group w-100">
-              <select
-                class="form-control ml-1 w-100"
-                [(ngModel)]="selectedHospital"
-                name="hospital_name"
-                (change)="selecteHospital()"
-                required
-              >
-                <option value="Select Hospital">Select Hospital</option>
-                <optgroup *ngFor="let hosp of hospitals">
-                  <option value="s">
+            <ng-container *ngIf="showSelectionOfHosp">
+              <div class="form-group w-100">
+                <select
+                  class="form-control ml-1 w-100"
+                  name="hospitalName"
+                  (change)="onItemChange($event.target.value)"
+                  required
+                >
+                  <option disabled selected value [ngValue]="null">
+                    Select Hospital
+                  </option>
+                  <!-- <optgroup *ngFor="let hosp of hospitals">
+                    <option
+                      [value]="hospital_name"
+                    >
+                      {{ hosp.hospital_name }}
+                    </option>
+                  </optgroup> -->
+                  <option *ngFor="let hosp of hospitals" [value]="hosp.id">
                     {{ hosp.hospital_name }}
                   </option>
-                </optgroup>
-              </select>
-            </div>
+                </select>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="showSelectedHosp">
+              <h5 class="text-white my-auto ml-2">
+                {{ showSelectedHospName }}
+              </h5>
+            </ng-container>
           </div>
 
           <div class="w-100 d-flex mt-3 shadow">
@@ -63,9 +76,9 @@
             <input
               class="input-fields w-100 p-2"
               type="date"
-              name="name"
+              name="date"
+              [(ngModel)]="appointments.date"
               placeholder="Date"
-              #block
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -79,7 +92,7 @@
               type="time"
               name="time"
               placeholder="Time"
-              #block
+              [(ngModel)]="appointments.time"
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -93,7 +106,7 @@
               type="text"
               name="roomnumber"
               placeholder="Room Number"
-              #block
+              [(ngModel)]="appointments.room_number"
             />
           </div>
           <div class="w-100 d-flex mt-3 shadow">
@@ -107,12 +120,18 @@
               type="text"
               name="patient"
               placeholder="Patient name"
-              #block
+              [(ngModel)]="appointments.patient_name"
             />
           </div>
         </form>
       </div>
-      <button class="btn btn-danger w-100 py-2 rounded-pill shadow mt-5">
+      <button
+        class="btn btn-secondary w-100 py-2 rounded-pill shadow mt-5"
+        (click)="submitAppointment()"
+      >
+        Submit
+      </button>
+      <button class="btn btn-danger w-100 py-2 rounded-pill shadow mt-2">
         Cancel
       </button>
     </div>

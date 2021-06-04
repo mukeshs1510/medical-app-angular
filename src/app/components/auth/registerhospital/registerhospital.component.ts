@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ManageHospModel } from '../../models/ManageHospModel';
 import { FirebaseserviceService } from '../../services/firebaseservice.service';
 
 @Component({
@@ -11,6 +12,19 @@ export class RegisterhospitalComponent implements OnInit {
 
   isSignedIn = false
 
+  hospital: ManageHospModel = {
+    hospital_name: "",
+    location: "",
+    timing: "",
+    imageUrl: "",
+    remaining_bed: "",
+    owner_name: "",
+    email: "",
+    mobile: "",
+    password: "",
+    pharmacy_name: "",
+  }
+
   constructor(public firebaseService: FirebaseserviceService,
     private route: Router) { }
 
@@ -21,21 +35,12 @@ export class RegisterhospitalComponent implements OnInit {
       this.isSignedIn = false
   }
   async onSignUpHospital(
-    hospname: string,
     email: string,
-    location: string,
     password: string,
-    conPass: string,
-    timing: string
+    conPass: string
   ) {
     if(password.match(conPass)) {
-      let Hosptial = {}
-    Hosptial['hospital_name'] = hospname;
-    Hosptial['email'] = email;
-    Hosptial['location'] = location;
-    Hosptial['password'] = password;
-    Hosptial['timing'] = timing;
-      await this.firebaseService.signUpHospital(email, password, Hosptial)
+      await this.firebaseService.signUpHospital(email, password, this.hospital)
       if(this.firebaseService.isLoggedIn) {
         } 
     } else {

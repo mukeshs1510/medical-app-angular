@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ManageHospModel } from '../../models/ManageHospModel';
 import { FirebaseserviceService } from '../../services/firebaseservice.service';
 
 @Component({
@@ -8,6 +9,25 @@ import { FirebaseserviceService } from '../../services/firebaseservice.service';
   styleUrls: ['./hospitalaccount.component.scss']
 })
 export class HospitalaccountComponent implements OnInit {
+
+  hospitalDetails: ManageHospModel = {
+    hospital_name: "",
+    location: "",
+    timing: "",
+    imageUrl: "",
+    remaining_bed: "",
+    owner_name: "",
+    email: "",
+    mobile: "",
+    password: "",
+    pharmacy_name: "",
+    
+  }
+
+  imageUrlDefault = "../../../../assets/map.jpg"
+
+  imagePath: string = ''
+  imageSource: string = ''
 
   constructor(private firebaseServices: FirebaseserviceService,
     private router: Router) { }
@@ -20,6 +40,10 @@ export class HospitalaccountComponent implements OnInit {
   onLogout() {
     this.firebaseServices.signOut();
     this.router.navigateByUrl("/login")
+  }
+
+  uploadImage($event) {
+    this.imagePath = $event.target.files[0]
   }
 
 }

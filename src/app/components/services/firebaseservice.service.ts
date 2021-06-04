@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { PharmacyModel } from '../models/PharmacyModel';
+import { AppointmentModel } from '../models/AppointmentModel';
+import { ManageHospModel } from '../models/ManageHospModel';
 
 @Injectable({
   providedIn: 'root'
@@ -27,14 +29,13 @@ export class FirebaseserviceService {
 
   constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore,private toastr: ToastrService,
     private router: Router) { 
-      // this.hospitals = this.firebaseFirestore.collection('hospitals').snapshotChanges();
   }
 
   async checkHospitalOrNormalUser(email: string, password: string) {
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then(res => {
       let uid = res.user.uid
-      this.firebaseFirestore.collection("registerdHospitals").doc(uid).ref.get().then(res => {
+      this.firebaseFirestore.collection("hospitals").doc(uid).ref.get().then(res => {
         if(res.exists) {
           this.router.navigateByUrl("/hospitalHome")
         } else {
@@ -73,7 +74,7 @@ export class FirebaseserviceService {
     })
   }
 
-  async signUpHospital(email: string, password: string, hospital: any) {
+  async signUpHospital(email: string, password: string, hospital: ManageHospModel) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
     .then(res => {
       this.isLoggedIn = true
@@ -81,8 +82,8 @@ export class FirebaseserviceService {
     })
   }
 
-  storeHospitalDetails(id: string, hospital: any) {
-    return this.firebaseFirestore.collection("registerdHospitals")
+  storeHospitalDetails(id: string, hospital: ManageHospModel) {
+    return this.firebaseFirestore.collection("hospitals")
     .doc(id)
     .set(hospital).then(res => 
       {
@@ -142,9 +143,26 @@ export class FirebaseserviceService {
   }
 
   getSpecificManegedHospital(uid: any) {
-      this.hospitalManage = this.firebaseFirestore.collection("registerdHospitals").doc(uid).valueChanges()
+      this.hospitalManage = this.firebaseFirestore.collection("hospitals").doc(uid).valueChanges()
       return this.hospitalManage;
   }
+
+  updateSpecificHospital(hospitals, id) {
+    let colName = "hospitals"
+    return this.firebaseFirestore.collection("hospitals").doc(id).set(hospitals).then(res => {
+    this.firebaseFirestore.collection("hospitals").doc(id).get().pipe(
+      map(a => {
+        const data = a.data() as any;
+        const oldImagePath = data.imagePath
+        return oldImagePath
+      })
+    ).subscribe(res => {
+      // this.updateImage(image, id, colName, res)
+      this.toastMessage("Successfully Updated", "Hospital Updation")
+    })
+  }
+  )
+}
 
   getPharmacy() {
     return this.firebaseFirestore.collection("pharmacy").snapshotChanges().pipe(
@@ -154,6 +172,14 @@ export class FirebaseserviceService {
         return { id, ...data };
       }))
     );
+  }
+
+  async addAppontmentToSpecificHospital(appointments: AppointmentModel, hospId: any) {
+    await this.firebaseFirestore.collection("hospitals").doc(hospId)
+    .collection("appointments").add(appointments)
+    .then(res => {
+      console.log('added')
+    })
   }
 
   getSpecificPharmacy(id: string) {
