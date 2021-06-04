@@ -13,15 +13,22 @@ export class HomehospitalComponent implements OnInit {
 
   constructor(private firebaseAuth: AngularFireAuth, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.firebaseAuth.currentUser.then(res => {
+      this.uidHosp = res.uid
+    })
   }
 
   async manageHosp() {
-    await this.firebaseAuth.currentUser.then(res => {
-      this.uidHosp = res.uid
       this.router.navigateByUrl("/manageHosp/"+this.uidHosp)
-    })
+  }
 
+  goToAppointments() {
+    this.router.navigateByUrl("/manageAppointments/"+this.uidHosp)
+  }
+
+  goToPharm(){
+    this.router.navigateByUrl("/managePharm/"+this.uidHosp)
   }
 
 }

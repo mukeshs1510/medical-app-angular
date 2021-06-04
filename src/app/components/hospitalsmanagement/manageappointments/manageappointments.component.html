@@ -1,1 +1,20 @@
-<p>manageappointments works!</p>
+<div class="bg">
+  <div class="row">
+    <div class="col-12">
+      <app-navbarhospital></app-navbarhospital>
+      <div class="row mt-5">
+        <div class="col-12 d-flex flex-column mx-auto">
+          <div class="d-flex flex-column my-auto ml-1">
+            <ul>
+              <li class="text-white ml-3" *ngFor="let appo of appointmentModel">
+                <h4 class="text-white">{{ appo.patient_name }}</h4>
+                <h6 class="text-white">{{ appo.date }}</h6>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-bottomnavhospital></app-bottomnavhospital>
+  </div>
+</div>

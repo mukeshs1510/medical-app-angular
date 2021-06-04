@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { PharmacyModel } from '../models/PharmacyModel';
 import { AppointmentModel } from '../models/AppointmentModel';
 import { ManageHospModel } from '../models/ManageHospModel';
+import { AngularFireStorage } from '@angular/fire/storage'
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,13 @@ export class FirebaseserviceService {
   hospitals: any = []
   hospitalManage: any = []
 
+  appointments: AppointmentModel[]
+
   pharmacy: any = []
   users: any = []
 
   constructor(public firebaseAuth: AngularFireAuth, public firebaseFirestore: AngularFirestore,private toastr: ToastrService,
-    private router: Router) { 
+    private router: Router, private firebaseStorage: AngularFireStorage) { 
   }
 
   async checkHospitalOrNormalUser(email: string, password: string) {
@@ -37,6 +40,7 @@ export class FirebaseserviceService {
       let uid = res.user.uid
       this.firebaseFirestore.collection("hospitals").doc(uid).ref.get().then(res => {
         if(res.exists) {
+          console.log(res)
           this.router.navigateByUrl("/hospitalHome")
         } else {
           console.log("try another way")
@@ -74,24 +78,61 @@ export class FirebaseserviceService {
     })
   }
 
-  async signUpHospital(email: string, password: string, hospital: ManageHospModel) {
+  async signUpHospital(email: string, password: string, hospital: ManageHospModel, imagePath) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
     .then(res => {
       this.isLoggedIn = true
-      this.storeHospitalDetails(res.user.uid, hospital)
+      this.storeHospitalDetails(res.user.uid, hospital, imagePath)
     })
   }
 
-  storeHospitalDetails(id: string, hospital: ManageHospModel) {
+  storeHospitalDetails(id: string, hospital: ManageHospModel, imagePath) {
     return this.firebaseFirestore.collection("hospitals")
     .doc(id)
     .set(hospital).then(res => 
       {
-        this.router.navigateByUrl('/hospitalHome')
-      alert("Successfully Registered!")
+        // this.router.navigateByUrl('/hospitalHome')
+        this.storeImage(imagePath, id)
       }
       )
-    
+  }
+
+  getAllAppointments(id: string) {
+    // return this.firebaseFirestore.collection("hospitals").doc(id).collection("appointments").valueChanges()
+    return this.firebaseFirestore.collection("hospitals").doc(id).collection("appointments").snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const id = a.payload.doc.id;
+        const data = a.payload.doc.data() as any;
+        return { id, ...data }; 
+      }))
+    );
+  }
+
+  storeImage(image, id) {
+    var date = Date.now();
+    const imagePath = `HospitalsImage/${id}/IMG${date}`
+    const imageRef = this.firebaseStorage.ref(imagePath)
+    this.firebaseStorage.upload(imagePath, image).then(res => {
+      imageRef.getDownloadURL().subscribe(res => {
+        let newData = {
+          imagePath: imagePath,
+          imageUrl: res
+        }
+        this.router.navigateByUrl('/hospitalHome')
+        this.toastMessage("Successfully Registered","Registration")
+        this.firebaseFirestore.collection("hospitals").doc(id).update(
+          newData
+        )
+      })
+    })
+  }
+
+  async addPharmacyIntoHospital(pharmacy, hospId) {
+    await this.firebaseFirestore.collection("hospitals").doc(hospId)
+    .collection("pharmacy").add(pharmacy)
+    .then(res => {
+      console.log('added')
+    })
   }
 
   signOut() {
@@ -148,20 +189,39 @@ export class FirebaseserviceService {
   }
 
   updateSpecificHospital(hospitals, id) {
-    let colName = "hospitals"
     return this.firebaseFirestore.collection("hospitals").doc(id).set(hospitals).then(res => {
-    this.firebaseFirestore.collection("hospitals").doc(id).get().pipe(
-      map(a => {
-        const data = a.data() as any;
-        const oldImagePath = data.imagePath
-        return oldImagePath
-      })
-    ).subscribe(res => {
-      // this.updateImage(image, id, colName, res)
-      this.toastMessage("Successfully Updated", "Hospital Updation")
-    })
+    this.toastMessage("Successfully Updated", "Hospital Updation")
   }
   )
+}
+
+
+async updateImage(image: any, id: string, hospitals: ManageHospModel) {
+this.firebaseFirestore.collection("hospitals").doc(id).get().pipe(
+  map(a => {
+    const data = a.data() as any;
+    const oldImagePath = data.imagePath
+    return oldImagePath
+  })
+).subscribe(res => {
+  const imagePath = res
+  const imageRef = this.firebaseStorage.ref(imagePath)
+  this.firebaseStorage.upload(imagePath, image).then(res => {
+    imageRef.getDownloadURL().subscribe(res => {
+      let newData = {
+        imagePath: imagePath,
+        imageUrl: res
+      }
+      this.firebaseFirestore.collection("hospitals").doc(id).update(
+        newData
+      ).then(res => {
+        this.firebaseFirestore.collection("hospitals").doc(id).update(
+          hospitals
+        ).then(res => alert("Successfully Updated"))
+      })
+    })
+  })
+})
 }
 
   getPharmacy() {

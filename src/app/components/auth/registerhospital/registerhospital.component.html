@@ -9,11 +9,17 @@
       />
       <h2 class="text-white">Hello There!</h2>
       <p class="text-white h5 mt-2">Welcome,</p>
-      <p class="text-white p-text">
-        Please, Register your account by<br />
-        filling this form
-      </p>
       <form>
+        <div class="d-flex mx-auto my-2">
+          <label for="image">Image: </label>
+          <input
+            type="file"
+            (change)="uploadImage($event)"
+            accept="*.png.jpg"
+            name="imageUrl"
+            [(ngModel)]="hospital.imageUrl"
+          />
+        </div>
         <input
           class="input-fields w-100 p-2 mt-2"
           placeholder="Hospital name"

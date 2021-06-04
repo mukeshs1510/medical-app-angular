@@ -5,7 +5,7 @@
       <div class="d-flex w-100 mt-3">
         <img
           class="my-auto w-100"
-          [src]="imageUrlDefault"
+          [src]="hospitalDetails.imageUrl"
           height="140"
           alt="account"
         />
@@ -17,7 +17,6 @@
           accept="*.png.jpg"
           name="imageUrl"
           (change)="uploadImage($event)"
-          [(ngModel)]="hospitalDetails.imageUrl"
         />
       </div>
       <div class="d-flex flex-column mt-3">
@@ -34,6 +33,7 @@
               type="text"
               name="name"
               placeholder="Your name"
+              [(ngModel)]="hospitalDetails.owner_name"
             />
           </div>
           <div class="w-100 d-flex mt-1 shadow">
@@ -47,6 +47,7 @@
               type="text"
               name="email"
               placeholder="Email-address"
+              [(ngModel)]="hospitalDetails.email"
             />
           </div>
           <div class="w-100 d-flex mt-1 shadow">
@@ -65,6 +66,7 @@
               type="text"
               placeholder="Mobile number"
               name="number"
+              [(ngModel)]="hospitalDetails.mobile"
             />
           </div>
           <div class="w-100 d-flex mt-1 shadow">
@@ -78,7 +80,7 @@
               type="text"
               name="pharmacy"
               placeholder="Pharmacy Name (If any)"
-              #pharmacy
+              [(ngModel)]="hospitalDetails.pharmacy_name"
             />
           </div>
           <div class="w-100 d-flex mt-1 shadow">
@@ -90,9 +92,9 @@
             <input
               class="input-fields w-100 p-2"
               type="text"
-              name="name"
+              name="password"
               placeholder="Change password"
-              #block
+              [(ngModel)]="hospitalDetails.password"
             />
           </div>
         </form>

@@ -25,6 +25,8 @@ export class RegisterhospitalComponent implements OnInit {
     pharmacy_name: "",
   }
 
+  imagePath: string = ''
+
   constructor(public firebaseService: FirebaseserviceService,
     private route: Router) { }
 
@@ -34,13 +36,18 @@ export class RegisterhospitalComponent implements OnInit {
       else 
       this.isSignedIn = false
   }
+
+  uploadImage($event) {
+    this.imagePath = $event.target.files[0]
+  }
+
   async onSignUpHospital(
     email: string,
     password: string,
     conPass: string
   ) {
     if(password.match(conPass)) {
-      await this.firebaseService.signUpHospital(email, password, this.hospital)
+      await this.firebaseService.signUpHospital(email, password, this.hospital, this.imagePath)
       if(this.firebaseService.isLoggedIn) {
         } 
     } else {

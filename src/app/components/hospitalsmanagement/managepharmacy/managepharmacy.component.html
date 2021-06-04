@@ -23,6 +23,7 @@
                 type="text"
                 name="pharmpname"
                 placeholder="Pharmacy Name"
+                [(ngModel)]="pharmacy.pharmacy_name"
                 #pharmpname
               />
             </div>
@@ -37,6 +38,7 @@
                 type="time"
                 name="timing"
                 placeholder="Timing"
+                [(ngModel)]="pharmacy.timing"
                 #timing
               />
             </div>
@@ -51,6 +53,7 @@
                 type="text"
                 name="location"
                 placeholder="Location"
+                [(ngModel)]="pharmacy.location"
                 #location
               />
             </div>
@@ -65,6 +68,7 @@
                 type="text"
                 name="shopkeeper"
                 placeholder="Shopkeeper Name"
+                [(ngModel)]="pharmacy.shopkeep_name"
                 #shopkeeper
               />
             </div>
@@ -79,6 +83,7 @@
                 type="number"
                 name="mnumber"
                 placeholder="Mobile Number"
+                [(ngModel)]="pharmacy.mobile"
                 #mnumber
               />
             </div>
@@ -86,7 +91,10 @@
         </ng-container>
       </div>
       <ng-container *ngIf="hasPharmacy">
-        <button class="btn btn-primary w-100 py-2 rounded-pill shadow mt-5">
+        <button
+          class="btn btn-primary w-100 py-2 rounded-pill shadow mt-5"
+          (click)="addingPharm()"
+        >
           Save Changes
         </button>
         <button

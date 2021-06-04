@@ -28,22 +28,30 @@ export class HospitalaccountComponent implements OnInit {
 
   imagePath: string = ''
   imageSource: string = ''
+  uidHosp: string = ''
 
   constructor(private firebaseServices: FirebaseserviceService,
     private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.firebaseServices.firebaseAuth.currentUser.then(res => this.uidHosp = res.uid)
+    console.log(this.uidHosp)
+      this.firebaseServices.getSpecificManegedHospital(this.uidHosp).subscribe(res => {
+        this.hospitalDetails = res
+      })
   }
-
-  editUserDetails(){}
 
   onLogout() {
     this.firebaseServices.signOut();
     this.router.navigateByUrl("/login")
   }
-
+  
   uploadImage($event) {
     this.imagePath = $event.target.files[0]
+  }
+  
+  editUserDetails(){
+    this.firebaseServices.updateImage(this.imagePath, this.uidHosp, this.hospitalDetails)
   }
 
 }
